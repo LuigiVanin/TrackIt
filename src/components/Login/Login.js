@@ -29,7 +29,12 @@ function Login() {
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
         const promise = axios.post(URL, loginData);
         promise.then((response) => {
+            const localUserData = {
+                name: response.data.name,
+                image: response.data.image,
+            };
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(localUserData));
             navigate("/habitos/");
         });
         promise.catch((err) => {
