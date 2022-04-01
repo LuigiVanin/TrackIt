@@ -1,19 +1,19 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import TodayContext from "../../contexts/TodayContext";
 import { Container } from "../../styles/components";
+import HabitBox from "../HabitBox/HabitBox";
 import HabitForm from "../HabitForm/HabitForm";
 import Header from "../Header/Header";
-import { HomeContainer, HabitBox, CreateHabit } from "./Habits.style";
+import { HomeContainer, HabitContainer, CreateHabit } from "./Habits.style";
+import Footer from "../Footer/Footer";
+import Theme from "../../styles/theme";
 
 function Home() {
     const [habits, setHabits] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [endRequest, setEndRequest] = useState(false);
     const [showForm, setShowForm] = useState(false);
-    const context = useContext(TodayContext);
-    console.log(context);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -34,6 +34,10 @@ function Home() {
         promise.catch((err) => console.log(err));
     }, [refresh]);
 
+    function refreshDataControl() {
+        setRefresh(!refresh);
+    }
+
     function renderHabits() {
         return !endRequest && habits.length === 0 ? (
             <ThreeDots color="#126ba5" />
@@ -45,20 +49,23 @@ function Home() {
         ) : (
             <>
                 {habits.map((habit, idx) => {
-                    return <h1>{idx}</h1>;
+                    return (
+                        <HabitBox
+                            key={idx}
+                            data={habit}
+                            refreshData={refreshDataControl}
+                        />
+                    );
                 })}
-                {!endRequest ? <ThreeDots color="#126ba5" /> : <></>}
+                {!endRequest ? <ThreeDots color="white" /> : <></>}
             </>
         );
     }
 
-    function refreshDataControl() {
-        setRefresh(!refresh);
-    }
     return (
         <>
             <Header />
-            <Container width="100%" color="#E5E5E5">
+            <Container width="100%" color={Theme.colors.backgroundGray}>
                 <HomeContainer>
                     <CreateHabit>
                         <h1>Meus Hábitos</h1>
@@ -73,9 +80,10 @@ function Home() {
                     ) : (
                         <></>
                     )}
-                    <HabitBox>{renderHabits()}</HabitBox>
+                    <HabitContainer>{renderHabits()}</HabitContainer>
                 </HomeContainer>
             </Container>
+            <Footer />
         </>
     );
 }

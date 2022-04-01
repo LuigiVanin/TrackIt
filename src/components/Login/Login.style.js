@@ -4,10 +4,11 @@ import {
     disabledComponent,
     maxWidthPage,
 } from "../../styles/components";
+import Theme from "../../styles/theme";
 
 export const LoginContainer = styled(Container)`
     padding-top: 12vh;
-    background: white;
+    background: ${Theme.colors.white};
 
     img {
         height: 180px;
@@ -15,7 +16,7 @@ export const LoginContainer = styled(Container)`
     }
 
     a {
-        color: #52b6ff;
+        color: ${Theme.colors.lightBlue};
         font-weight: 400;
         text-align: center;
         font-size: 14px;

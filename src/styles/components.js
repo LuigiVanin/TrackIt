@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Theme from "./theme";
 
 export const Container = styled.main`
     display: flex;
@@ -11,7 +12,7 @@ export const Container = styled.main`
 `;
 
 export const Inputs = styled.input`
-    border: 1px solid #d5d5d5;
+    border: 1px solid ${Theme.colors.softGray};
     border-radius: 4px;
     padding-inline: 10px;
     outline: none;
@@ -20,7 +21,7 @@ export const Inputs = styled.input`
     font-size: 17px;
 
     &::placeholder {
-        color: #d5d5d5;
+        color: ${Theme.colors.softGray};
         font-family: "Lexend Deca", sans-serif;
         font-size: 17px;
     }
@@ -35,8 +36,10 @@ export const Button = styled.button`
     font-family: "Lexend Deca", sans-serif;
     border: none;
     cursor: pointer;
-    background: ${(props) => (props.theme === "reverse" ? "white" : "#52b6ff")};
-    color: ${(props) => (props.theme === "reverse" ? "#52b6ff" : "white")};
+    background: ${(props) =>
+        props.theme === "reverse" ? "white" : Theme.colors.lightBlue};
+    color: ${(props) =>
+        props.theme === "reverse" ? Theme.colors.lightBlue : "white"};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,9 +52,10 @@ export const Bar = styled.div`
     display: flex;
     background: ${(props) => props.color};
     ${(props) => props.position}: 0px;
-    box-shadow: 0px 0px 12px 5px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 3px 16px 5px rgba(0, 0, 0, 0.23);
     align-items: center;
     justify-content: center;
+    z-index: 10;
 `;
 
 export const Box = styled.div`
@@ -62,6 +66,23 @@ export const Box = styled.div`
     border-radius: 5px;
     background-color: white;
     gap: 10px;
+    position: relative;
+    z-index: 0;
+`;
+
+export const Day = styled.div`
+    width: 26px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid ${Theme.colors.softGray};
+    background: ${(props) =>
+        props.theme !== "reverse" ? "white" : Theme.colors.softGray};
+    color: ${(props) =>
+        props.theme !== "reverse" ? Theme.colors.softGray : "white"};
+    cursor: pointer;
 `;
 
 export const disabledComponent = `
@@ -71,7 +92,7 @@ export const disabledComponent = `
 `;
 
 export const maxWidthPage = `
-    @media (min-width: 425px) {
-        width: calc(425px * 0.9);
+    @media (min-width: 500px) {
+        width: calc(500px * 0.9);
     }
 `;

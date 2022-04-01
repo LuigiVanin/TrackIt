@@ -4,6 +4,7 @@ import {
     disabledComponent,
     maxWidthPage,
 } from "../../styles/components";
+import Theme from "../../styles/theme";
 
 export const SignUpContainer = styled(Container)`
     background: white;
@@ -14,7 +15,7 @@ export const SignUpContainer = styled(Container)`
     }
 
     a {
-        color: #52b6ff;
+        color: ${Theme.colors.lightBlue};
         font-weight: 400;
         text-align: center;
         font-size: 14px;

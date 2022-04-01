@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
     body{
         min-height: 100vh;
-        width: 100vw;
+        width: 100%;
         font-family: 'Lexend Deca', sans-serif;
     }
 

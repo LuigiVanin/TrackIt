@@ -7,6 +7,7 @@ export const NavBarTop = styled.header`
     justify-content: space-between;
     padding-inline: 25px;
     align-items: center;
+    z-index: 10;
 
     img {
         width: 100px;
@@ -16,10 +17,9 @@ export const NavBarTop = styled.header`
 export const RoundImage = styled.div`
     width: ${(props) => (props.size === undefined ? "20px" : props.size)};
     height: ${(props) => (props.size === undefined ? "20px" : props.size)};
-    background: red;
     border-radius: 50%;
     border: none;
-    background-color: #126ba5;
+    background-color: transparent;
     background: url(${(props) => props.image}) no-repeat;
     background-position: center;
     background-size: cover;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Inputs } from "../../styles/components";
 import {
@@ -7,12 +7,14 @@ import {
     ButtonBox,
     ButtonForm,
     SelectDay,
-    Day,
 } from "./HabitForm.style";
+import { Day } from "../../styles/components";
+import TodayContext from "../../contexts/TodayContext";
 
 function HabitForm(props) {
     const [name, setName] = useState("");
     const [days, setDays] = useState([]);
+    const { refreshToday } = useContext(TodayContext);
     const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
     const URL =
         "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
@@ -51,8 +53,9 @@ function HabitForm(props) {
             return;
         }
         const promise = axios.post(URL, { name, days }, config);
-        promise.then((response) => {
+        promise.then(() => {
             props.refreshData();
+            refreshToday();
             setName("");
             setDays([]);
         });
@@ -99,7 +102,7 @@ function HabitForm(props) {
                     {!isDisabled() ? (
                         "Salvar"
                     ) : (
-                        <ThreeDots radius="10px" color="white" width="50px" />
+                        <ThreeDots color="white" width="50px" />
                     )}
                 </ButtonForm>
                 <ButtonForm

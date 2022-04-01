@@ -7,9 +7,16 @@ import { useState, useEffect } from "react";
 import GlobalStyle from "../styles/global.style";
 import TodayContext from "../contexts/TodayContext";
 import axios from "axios";
+import TodayPage from "./Today/Today";
 
 function App() {
     const [todayHabits, setTodayHabits] = useState([]);
+    const [todayRequest, setTodayRequest] = useState(false);
+
+    function refreshToday() {
+        setTodayRequest(!todayRequest);
+    }
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token === null) {
@@ -25,12 +32,19 @@ function App() {
         const promise = axios.get(URL, config);
         promise.then((response) => {
             setTodayHabits(response.data);
+            console.log("TodayRefresh");
         });
         promise.catch((err) => console.log(err.response));
-    }, []);
+    }, [todayRequest]);
 
     return (
-        <TodayContext.Provider value={{ todayHabits, setTodayHabits }}>
+        <TodayContext.Provider
+            value={{
+                todayHabits,
+                setTodayHabits,
+                refreshToday,
+            }}
+        >
             <Reset />
             <GlobalStyle />
 
@@ -39,6 +53,7 @@ function App() {
                     <Route path="/" element={<Login />} />
                     <Route path="/cadastro/" element={<SignUp />} />
                     <Route path="/habitos/" element={<Home />} />
+                    <Route path="/hoje/" element={<TodayPage />} />
                 </Routes>
             </BrowserRouter>
         </TodayContext.Provider>

@@ -20,7 +20,6 @@ function SignUp() {
     function changeRegisterData(event) {
         const target = event.target;
         registerData[target.name] = target.value;
-        console.log(registerData);
         setRegisterData({ ...registerData });
     }
 
@@ -32,6 +31,7 @@ function SignUp() {
         const promise = axios.post(URL, registerData);
         promise.then((response) => {
             console.log(response.data);
+            setDisable("");
         });
         promise.catch((err) => {
             console.log(err.response);
