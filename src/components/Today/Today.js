@@ -18,8 +18,27 @@ function TodayPage() {
         "Sexta",
         "Sábado",
     ];
-    const { todayHabits, refreshToday } = useContext(TodayContext);
+    const { todayHabits } = useContext(TodayContext);
     console.log(todayHabits);
+
+    function todayHabitDonePercentage() {
+        if (todayHabits.length === 0) return 0;
+        let counter = 0;
+        todayHabits.forEach((item) => {
+            counter += item.done;
+        });
+        return Math.ceil((counter / todayHabits.length) * 100);
+    }
+
+    function renderSubtitleText() {
+        const percentage = todayHabitDonePercentage();
+        return percentage === 0 ? (
+            "Nenhum hábito concluído"
+        ) : (
+            <span>Foram concluídos {percentage}% dos hábitos</span>
+        );
+    }
+
     return (
         <>
             <Header />
@@ -29,7 +48,7 @@ function TodayPage() {
                         <h1>
                             {weekdays[dayjs().day()]}, {dayjs().format("DD/MM")}
                         </h1>
-                        <p>Nenhuma hábito concluído</p>
+                        <p>{renderSubtitleText()}</p>
                     </Title>
                     <HabitContainer>
                         {todayHabits.map((habit) => {

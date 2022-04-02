@@ -19,15 +19,13 @@ function Footer() {
     });
 
     function todayHabitsDone() {
-        if (todayHabits.length === 0) return;
-        let counter = 1;
+        if (todayHabits.length === 0) return 0;
+        let counter = 0;
         todayHabits.forEach((item) => {
             counter += item.done;
         });
         return Math.ceil((counter / todayHabits.length) * 100);
     }
-
-    console.log(todayHabits, todayHabitsDone());
 
     return (
         <Bar position="bottom" color="white">
@@ -45,7 +43,7 @@ function Footer() {
                         />
                     </Link>
                 </ProgressBarWrapper>
-                <Link to="/habitos">Histótico</Link>
+                <Link to="/historico">Histórico</Link>
             </NavBarBottom>
         </Bar>
     );

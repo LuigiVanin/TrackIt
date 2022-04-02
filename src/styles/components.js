@@ -85,6 +85,26 @@ export const Day = styled.div`
     cursor: pointer;
 `;
 
+export const Title = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    margin-top: 20px;
+    h1 {
+        font-weight: 400;
+        font-size: 22.976px;
+        line-height: 29px;
+        color: ${Theme.colors.DarkBlue};
+    }
+    p {
+        color: ${Theme.colors.hardGray};
+        span {
+            color: ${Theme.colors.green};
+        }
+    }
+`;
+
 export const disabledComponent = `
     &.disabled {
         opacity: 0.8;

@@ -8,6 +8,7 @@ import GlobalStyle from "../styles/global.style";
 import TodayContext from "../contexts/TodayContext";
 import axios from "axios";
 import TodayPage from "./Today/Today";
+import History from "./HistoryPage/History";
 
 function App() {
     const [todayHabits, setTodayHabits] = useState([]);
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/cadastro/" element={<SignUp />} />
                     <Route path="/habitos/" element={<Home />} />
                     <Route path="/hoje/" element={<TodayPage />} />
+                    <Route path="/historico" element={<History />} />
                 </Routes>
             </BrowserRouter>
         </TodayContext.Provider>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Inputs, Button } from "../../styles/components";
 import { SignUpContainer, SignUpForm } from "./SignUp.style";
 import { useState } from "react";
@@ -16,6 +16,7 @@ function SignUp() {
     };
     const [registerData, setRegisterData] = useState(DEBUG);
     const [disable, setDisable] = useState("");
+    const navigate = useNavigate();
 
     function changeRegisterData(event) {
         const target = event.target;
@@ -32,6 +33,9 @@ function SignUp() {
         promise.then((response) => {
             console.log(response.data);
             setDisable("");
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
         });
         promise.catch((err) => {
             console.log(err.response);

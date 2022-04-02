@@ -7,6 +7,12 @@ export const TodayBox = styled(Box)`
     justify-content: space-between;
     align-items: start;
     padding: 12px;
+    &.selected {
+        box-shadow: 0 0 0 3px ${Theme.colors.green};
+        .checkmark {
+            background-color: ${Theme.colors.green};
+        }
+    }
 `;
 
 export const Span = styled.span`

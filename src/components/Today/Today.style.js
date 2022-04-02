@@ -24,6 +24,9 @@ export const Title = styled.div`
     }
     p {
         color: ${Theme.colors.hardGray};
+        span {
+            color: ${Theme.colors.green};
+        }
     }
 `;
 
