@@ -22,8 +22,7 @@ function Login() {
         setLoginData({ ...loginData });
     }
 
-    function login(event) {
-        event.preventDefault();
+    function login() {
         setDisable("disabled");
         const URL =
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
@@ -35,7 +34,7 @@ function Login() {
             };
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("user", JSON.stringify(localUserData));
-            navigate("/habitos/");
+            navigate("/hoje/");
         });
         promise.catch((err) => {
             console.log(err.response);
@@ -46,7 +45,13 @@ function Login() {
     return (
         <LoginContainer>
             <img src={TrackItLogo} alt="Logo" />
-            <LoginForm onSubmit={login} className={disable}>
+            <LoginForm
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    login();
+                }}
+                className={disable}
+            >
                 <Inputs
                     placeholder="email"
                     type="email"

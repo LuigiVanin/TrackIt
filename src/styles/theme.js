@@ -8,6 +8,7 @@ const Theme = {
         softBlack: "#666666",
         green: "#8FC549",
         white: "#FFFFFF",
+        red: "#fd7c8e",
     },
 };
 
