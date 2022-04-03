@@ -1,8 +1,9 @@
 import { LoginContainer, LoginForm } from "./Login.style";
 import { Button, Inputs } from "../../styles/components";
+import UserContext from "../../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 
 import TrackItLogo from "../../assets/Logo.png";
@@ -12,6 +13,7 @@ function Login() {
         email: "luisfvaninmartins@gmail.com",
         password: "senha123",
     };
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [loginData, setLoginData] = useState(DEBUG);
     const [disable, setDisable] = useState("");
@@ -34,6 +36,7 @@ function Login() {
             };
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("user", JSON.stringify(localUserData));
+            setUser({ ...localUserData, token: response.data.token });
             navigate("/hoje/");
         });
         promise.catch((err) => {

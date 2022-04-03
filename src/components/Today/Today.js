@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { useEffect } from "react";
 import { useContext } from "react";
 import TodayContext from "../../contexts/TodayContext";
 import { Container } from "../../styles/components";
@@ -18,8 +19,11 @@ function TodayPage() {
         "Sexta",
         "Sábado",
     ];
-    const { todayHabits } = useContext(TodayContext);
-    console.log(todayHabits);
+    const { todayHabits, refreshToday } = useContext(TodayContext);
+
+    useEffect(() => {
+        refreshToday();
+    }, []);
 
     function todayHabitDonePercentage() {
         if (todayHabits.length === 0) return 0;

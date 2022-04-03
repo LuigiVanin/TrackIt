@@ -26,7 +26,6 @@ function TodayHabit(props) {
 
         promise.then((response) => {
             refreshToday();
-            console.log(response);
         });
         promise.catch((err) => {
             refreshToday();

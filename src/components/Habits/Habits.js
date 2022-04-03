@@ -40,7 +40,7 @@ function Home() {
 
     function renderHabits() {
         return !endRequest && habits.length === 0 ? (
-            <ThreeDots color="#126ba5" />
+            <ThreeDots color={Theme.colors.lightBlue} />
         ) : habits.length === 0 ? (
             <p>
                 Você não tem nenhum hábito cadastrado ainda. Adicione um hábito

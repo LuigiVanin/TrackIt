@@ -35,7 +35,8 @@ function App() {
     }, []);
 
     useEffect(() => {
-        if (localStorage.getItem("token") === null) return;
+        const token = localStorage.getItem("token");
+        if (token === null) return;
         const URL =
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today";
         const config = {
