@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import TodayContext from "../../contexts/TodayContext";
 import { Container } from "../../styles/components";
 import Theme from "../../styles/theme";
@@ -19,11 +19,16 @@ function TodayPage() {
         "Sexta",
         "Sábado",
     ];
+    const navigate = useNavigate();
     const { todayHabits, refreshToday } = useContext(TodayContext);
 
     useEffect(() => {
         refreshToday();
-    }, []);
+        if (localStorage.getItem("token") === null) {
+            navigate("/");
+            return;
+        }
+    }, [navigate]);
 
     function todayHabitDonePercentage() {
         if (todayHabits.length === 0) return 0;

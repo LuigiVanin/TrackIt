@@ -3,7 +3,7 @@ import { Button, Inputs } from "../../styles/components";
 import UserContext from "../../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 import TrackItLogo from "../../assets/Logo.png";
@@ -17,6 +17,12 @@ function Login() {
     const navigate = useNavigate();
     const [loginData, setLoginData] = useState(DEBUG);
     const [disable, setDisable] = useState("");
+
+    useEffect(() => {
+        if (localStorage.getItem("token") !== null) {
+            navigate("/hoje");
+        }
+    }, [navigate]);
 
     function changeLoginData(event) {
         const target = event.target;

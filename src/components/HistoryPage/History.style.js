@@ -14,6 +14,31 @@ export const HistoryContainer = styled(Container.withComponent("div"))`
     }
 `;
 
+export const DaysContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 35px;
+    gap: 10px;
+
+    h1 {
+        width: 100%;
+        text-align: left;
+
+        &.disable {
+            font-size: 17px;
+            color: ${Theme.colors.softBlack};
+        }
+
+        &.availabel {
+            font-size: 22px;
+            color: ${Theme.colors.DarkBlue};
+        }
+    }
+`;
+
 export const CalanderWrapper = styled.div`
     margin-top: 15px;
     width: 100%;

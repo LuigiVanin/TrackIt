@@ -1,22 +1,32 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { CalanderWrapper, HistoryContainer } from "./History.style";
+import {
+    CalanderWrapper,
+    HistoryContainer,
+    DaysContainer,
+} from "./History.style";
 import { Container, Title } from "../../styles/components";
 import Theme from "../../styles/theme";
 import Calender from "react-calendar";
 import { useEffect, useState } from "react";
-
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function History() {
+    const navigate = useNavigate();
     const [daySelected, setDaySelected] = useState();
+    const [selectedDay, setSelectedDay] = useState(undefined);
     const [history, setHistory] = useState([
         { day: "", habits: [{ done: null }] },
     ]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        if (token === null) {
+            navigate("/");
+            return;
+        }
         const URL =
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily";
         const config = {
@@ -30,7 +40,7 @@ function History() {
             setHistory(response.data);
         });
         promise.catch((err) => console.log(err.response));
-    }, []);
+    }, [navigate]);
 
     function formatDate(date) {
         date = date.split("/");
@@ -70,6 +80,24 @@ function History() {
         }
     }
 
+    function selectDay(date) {
+        const day = history.find((item) => {
+            if (isSameDay(formatDate(item.day), date)) {
+                return item.day;
+            }
+            return undefined;
+        });
+        setSelectedDay(day);
+    }
+
+    function renderDayHistory() {
+        console.log(selectedDay);
+        if (selectedDay === undefined) {
+            return <h1 className="disable">Você não tem registro nesse dia</h1>;
+        }
+        return <h1 className="availabel">{selectedDay.day}</h1>;
+    }
+
     return (
         <>
             <Header />
@@ -84,8 +112,10 @@ function History() {
                             onChange={setDaySelected}
                             value={daySelected}
                             tileClassName={specialDay}
+                            onClickDay={selectDay}
                         />
                     </CalanderWrapper>
+                    <DaysContainer>{renderDayHistory()}</DaysContainer>
                 </HistoryContainer>
             </Container>
             <Footer />

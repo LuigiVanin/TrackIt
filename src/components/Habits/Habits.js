@@ -8,15 +8,21 @@ import Header from "../Header/Header";
 import { HomeContainer, HabitContainer, CreateHabit } from "./Habits.style";
 import Footer from "../Footer/Footer";
 import Theme from "../../styles/theme";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
     const [habits, setHabits] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [endRequest, setEndRequest] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        if (token === null) {
+            navigate("/");
+            return;
+        }
         const URL =
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
         const config = {
@@ -32,7 +38,7 @@ function Home() {
             setEndRequest(true);
         });
         promise.catch((err) => console.log(err));
-    }, [refresh]);
+    }, [refresh, navigate]);
 
     function refreshDataControl() {
         setRefresh(!refresh);

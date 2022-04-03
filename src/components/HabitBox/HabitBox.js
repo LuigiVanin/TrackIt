@@ -12,6 +12,12 @@ function HabitBox(props) {
     const { refreshToday } = useContext(TodayContext);
 
     function deleteRequest() {
+        const warning = window.confirm(
+            "Ten cereteza que quer apagar esse hábito?"
+        );
+        if (!warning) {
+            return;
+        }
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`;
