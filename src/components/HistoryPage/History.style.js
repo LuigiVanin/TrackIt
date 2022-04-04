@@ -21,7 +21,7 @@ export const DaysContainer = styled.div`
     justify-content: start;
     align-items: center;
     margin-top: 35px;
-    gap: 10px;
+    gap: 20px;
 
     h1 {
         width: 100%;

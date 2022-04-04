@@ -68,6 +68,7 @@ export const Box = styled.div`
     gap: 10px;
     position: relative;
     z-index: 0;
+    box-shadow: 0 0 10px 3px #00000015;
 `;
 
 export const Day = styled.div`

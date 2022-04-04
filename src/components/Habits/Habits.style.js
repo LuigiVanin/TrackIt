@@ -17,7 +17,7 @@ export const HabitContainer = styled.div`
     justify-content: start;
     align-items: center;
     margin-top: 25px;
-    gap: 10px;
+    gap: 20px;
 
     p {
         font-size: 118pxx;
