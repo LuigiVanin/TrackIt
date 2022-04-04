@@ -7,11 +7,16 @@ export const TodayBox = styled(Box)`
     justify-content: space-between;
     align-items: start;
     padding: 12px;
+    transition: all 0.3s ease-in-out;
     &.selected {
         box-shadow: 0 0 0 3px ${Theme.colors.green};
         .checkmark {
             background-color: ${Theme.colors.green};
         }
+    }
+
+    &:hover {
+        box-shadow: 0 0 15px 3px #00000000;
     }
 `;
 

@@ -1,11 +1,4 @@
 import styled from "styled-components";
-import { Box } from "../../styles/components";
-
-export const HabitBoxField = styled(Box)`
-    /* &:hover {
-        background-color: red;
-    } */
-`;
 
 export const SelectDay = styled.div`
     display: flex;

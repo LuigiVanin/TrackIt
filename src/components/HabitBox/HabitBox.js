@@ -1,5 +1,5 @@
-import { Day } from "../../styles/components";
-import { SelectDay, Icon, HabitBoxField } from "./HabitBox.style";
+import { Box, Day } from "../../styles/components";
+import { SelectDay, Icon } from "./HabitBox.style";
 import TrashIcon from "../../assets/Trash.svg";
 import axios from "axios";
 import { useContext } from "react";
@@ -30,7 +30,7 @@ function HabitBox(props) {
     }
 
     return (
-        <HabitBoxField>
+        <Box>
             <Icon
                 src={TrashIcon}
                 alt="X"
@@ -50,7 +50,7 @@ function HabitBox(props) {
                     );
                 })}
             </SelectDay>
-        </HabitBoxField>
+        </Box>
     );
 }
 

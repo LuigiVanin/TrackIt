@@ -62,8 +62,8 @@ export const Box = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 10px;
     background-color: white;
     gap: 10px;
     position: relative;
