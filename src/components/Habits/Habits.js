@@ -15,6 +15,10 @@ function Home() {
     const [refresh, setRefresh] = useState(false);
     const [endRequest, setEndRequest] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const [defaultForm, setDefaultForm] = useState({
+        name: "",
+        days: [],
+    });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,11 +37,12 @@ function Home() {
         setEndRequest(false);
         const promise = axios.get(URL, config);
         promise.then((response) => {
-            console.log(response.data);
             setHabits(response.data);
             setEndRequest(true);
         });
-        promise.catch((err) => console.log(err));
+        promise.catch(() =>
+            alert("Há algum erro com seus hábitos, tente novamente")
+        );
     }, [refresh, navigate]);
 
     function refreshDataControl() {
@@ -82,6 +87,8 @@ function Home() {
                             closeForm={() => setShowForm(false)}
                             refreshData={refreshDataControl}
                             endRequest={endRequest}
+                            defaultValue={defaultForm}
+                            defaultSetter={setDefaultForm}
                         />
                     ) : (
                         <></>

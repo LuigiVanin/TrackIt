@@ -10,7 +10,7 @@ function Header() {
     return (
         <Bar color={Theme.colors.DarkBlue} position="top">
             <NavBarTop>
-                <img src={TrackItLogo} alt="Logo" />
+                <img src={TrackItLogo} alt="TrackIt" />
                 <RoundImage size="50px" image={user.image}></RoundImage>
             </NavBarTop>
         </Bar>

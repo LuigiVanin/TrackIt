@@ -19,7 +19,6 @@ function App() {
     function refreshToday() {
         setTodayRequest(!todayRequest);
     }
-    console.log("user aqui: ", user);
 
     useEffect(() => {
         const token = localStorage.getItem("token");

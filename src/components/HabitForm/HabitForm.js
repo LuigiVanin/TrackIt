@@ -12,8 +12,9 @@ import { Day } from "../../styles/components";
 import TodayContext from "../../contexts/TodayContext";
 
 function HabitForm(props) {
-    const [name, setName] = useState("");
-    const [days, setDays] = useState([]);
+    const { defaultValue, defaultSetter } = props;
+    const [name, setName] = useState(defaultValue.name);
+    const [days, setDays] = useState(defaultValue.days);
     const { refreshToday } = useContext(TodayContext);
     const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
     const URL =
@@ -21,7 +22,7 @@ function HabitForm(props) {
     const TOKEN = localStorage.getItem("token");
 
     function cancelForm() {
-        setName("");
+        defaultSetter({ name: name, days: days });
         props.closeForm();
     }
 
@@ -58,8 +59,11 @@ function HabitForm(props) {
             refreshToday();
             setName("");
             setDays([]);
+            defaultSetter({ name: "", days: [] });
         });
-        promise.catch((err) => console.log(err.request));
+        promise.catch((err) =>
+            alert("Há algum erro de formatação em seu hábito")
+        );
     }
 
     function changeName(event) {
@@ -71,7 +75,6 @@ function HabitForm(props) {
             className={isDisabled()}
             onSubmit={(event) => {
                 event.preventDefault();
-                console.log({ name, days });
                 habitPostRequest();
             }}
         >

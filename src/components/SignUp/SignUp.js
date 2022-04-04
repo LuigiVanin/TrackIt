@@ -8,13 +8,12 @@ import { ThreeDots } from "react-loader-spinner";
 import TaskItLogo from "../../assets/Logo.png";
 
 function SignUp() {
-    const DEBUG = {
-        name: "Luis Felipe Vanin",
-        email: "aaaaaa@gmail.com",
-        password: "senha123",
-        image: "https://avatars.githubusercontent.com/u/49759902?v=4",
-    };
-    const [registerData, setRegisterData] = useState(DEBUG);
+    const [registerData, setRegisterData] = useState({
+        email: "",
+        password: "",
+        name: "",
+        image: "",
+    });
     const [disable, setDisable] = useState("");
     const navigate = useNavigate();
 
@@ -39,7 +38,11 @@ function SignUp() {
         });
         promise.catch((err) => {
             console.log(err.response);
-            alert(err.response.data.message);
+            if (err.response.status === 409) {
+                alert(err.response.data.message);
+            } else {
+                alert("Algum campo do formulários estão inapropriado");
+            }
             setDisable("");
         });
     }
@@ -53,6 +56,7 @@ function SignUp() {
                     name="email"
                     onChange={changeRegisterData}
                     disabled={disable}
+                    required
                 />
                 <Inputs
                     type="text"
@@ -60,6 +64,7 @@ function SignUp() {
                     name="password"
                     onChange={changeRegisterData}
                     disabled={disable}
+                    required
                 />
                 <Inputs
                     type="text"
@@ -67,6 +72,7 @@ function SignUp() {
                     name="name"
                     onChange={changeRegisterData}
                     disabled={disable}
+                    required
                 />
                 <Inputs
                     type="url"
@@ -74,6 +80,7 @@ function SignUp() {
                     name="image"
                     onChange={changeRegisterData}
                     disabled={disable}
+                    required
                 />
                 <Button type="submit" disabled={disable}>
                     {!disable ? <>Cadastrar</> : <ThreeDots color="white" />}

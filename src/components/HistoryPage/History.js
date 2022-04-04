@@ -1,5 +1,6 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import HistoryHabit from "../HistoryHabit/HistoryHabit";
 import {
     CalanderWrapper,
     HistoryContainer,
@@ -36,7 +37,6 @@ function History() {
         };
         const promise = axios.get(URL, config);
         promise.then((response) => {
-            console.log(response.data);
             setHistory(response.data);
         });
         promise.catch((err) => console.log(err.response));
@@ -91,11 +91,17 @@ function History() {
     }
 
     function renderDayHistory() {
-        console.log(selectedDay);
         if (selectedDay === undefined) {
-            return <h1 className="disable">Você não tem registro nesse dia</h1>;
+            return (
+                <>
+                    <h1 className="availabel">Hábitos</h1>
+                    <h1 className="disable">
+                        Não existe registro nesse dia...
+                    </h1>
+                </>
+            );
         }
-        return <h1 className="availabel">{selectedDay.day}</h1>;
+        return <HistoryHabit history={selectedDay} />;
     }
 
     return (

@@ -9,13 +9,9 @@ import axios from "axios";
 import TrackItLogo from "../../assets/Logo.png";
 
 function Login() {
-    const DEBUG = {
-        email: "luisfvaninmartins@gmail.com",
-        password: "senha123",
-    };
     const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
-    const [loginData, setLoginData] = useState(DEBUG);
+    const [loginData, setLoginData] = useState({ email: "", password: "" });
     const [disable, setDisable] = useState("");
 
     useEffect(() => {
@@ -67,6 +63,7 @@ function Login() {
                     name="email"
                     onChange={changeLoginData}
                     disabled={disable}
+                    required
                 />
                 <Inputs
                     placeholder="senha"
@@ -74,6 +71,7 @@ function Login() {
                     name="password"
                     onChange={changeLoginData}
                     disabled={disable}
+                    required
                 />
                 <Button type="submit" disabled={disable}>
                     {!disable ? <>Entrar</> : <ThreeDots color="white" />}

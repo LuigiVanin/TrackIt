@@ -5,7 +5,7 @@ import Theme from "../../styles/theme";
 export const HomeContainer = styled(Container)`
     width: 90%;
     padding-top: 70px;
-    padding-bottom: 85px;
+    padding-bottom: 105px;
     background-color: transparent;
     ${maxWidthPage}
 `;

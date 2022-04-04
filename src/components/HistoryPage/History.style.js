@@ -5,7 +5,7 @@ import Theme from "../../styles/theme";
 export const HistoryContainer = styled(Container.withComponent("div"))`
     width: 90%;
     padding-top: 70px;
-    padding-bottom: 85px;
+    padding-bottom: 105px;
     background-color: transparent;
     ${maxWidthPage}
 
@@ -26,6 +26,7 @@ export const DaysContainer = styled.div`
     h1 {
         width: 100%;
         text-align: left;
+        margin-block: 10px;
 
         &.disable {
             font-size: 17px;
@@ -40,7 +41,6 @@ export const DaysContainer = styled.div`
 `;
 
 export const CalanderWrapper = styled.div`
-    margin-top: 15px;
     width: 100%;
 
     .my-calender {
@@ -49,7 +49,7 @@ export const CalanderWrapper = styled.div`
         width: auto;
         height: 300px;
         padding-block: 15px;
-        box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.178);
+        box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.158);
         .react-calendar__navigation button {
             font-size: 16px;
         }
