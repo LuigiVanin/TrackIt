@@ -16,7 +16,7 @@ export const TodayBox = styled(Box)`
     }
 
     &:hover {
-        box-shadow: 0 0 15px 3px #00000000;
+        box-shadow: 0 0 2px 1px #00000010;
     }
 `;
 
