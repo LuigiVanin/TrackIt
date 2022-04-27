@@ -65,6 +65,7 @@ A aplicação foi contruído utilizando React juntamente com styled componentes,
     <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
     <img src="https://img.shields.io/badge/Git-E34F26?style=for-the-badge&logo=git&logoColor=white" />
     <img src="https://img.shields.io/badge/Vercel-100000?style=for-the-badge&logo=vercel&logoColor=white" />
+    <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white">
 </p>
 
 ## Outras Ferramentas 📦
